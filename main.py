@@ -15,7 +15,8 @@ def face_verify(img_1, img_2):
 
 
 def main():
-    print(face_verify(img_1='faceTest/rg1.jpg', img_2='faceTest/rg3.jpg'))
+    print(face_verify(img_1='faceBPI/BPI-221_kozlovskaya.png', img_2='faceBPI/BPI-221_gamayunov.png'))
+
 
 
 if __name__ == "__main__":
