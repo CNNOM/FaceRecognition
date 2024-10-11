@@ -13,6 +13,7 @@ def face_verify(img_1, img_2):
         return _ex
 
 
+
 def main():
     print(face_verify(img_1='faceTest/rg1.jpg', img_2='faceTest/rg3.jpg'))
 
