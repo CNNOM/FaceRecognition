@@ -15,8 +15,8 @@ def face_verify(img_1, img_2):
 
 def face_recogn():
     try:
-        img_path = "faceBPI/img.png"
-        db_path = "faceBPItest"
+        img_path = "faceBPItest/img_3.png"
+        db_path = "faceBPI"
 
         DeepFace.build_model("Facenet")
 
@@ -26,9 +26,34 @@ def face_recogn():
         return err
 
 
+def face_analyze():
+    try:
+        # result_dict = DeepFace.analyze(img_path='faceBPI/img.png', actions=['age', 'gender', 'race', 'emotion'])
+        result_list = DeepFace.analyze(img_path='faceBPI/img.png', actions=['age', 'gender', 'race'])
+
+        for i, result_dict in enumerate(result_list):
+            print(f'[+] Лицо {i + 1}:')
+            print(f'[+] Возраст: {result_dict.get("age")}')
+            print(f'[+] Пол: {result_dict.get("gender")}')
+
+            print('[+] Раса:')
+            for k, v in result_dict.get('race').items():
+                print(f'{k} - {round(v, 2)}%')
+
+        # print('[+] Emotions:')
+        # for k, v in result_dict.get('emotion').items(): print(f'{k} - {round(v, 2)}*')
+
+        with open('face_analyze.json', 'w') as file:
+            json.dump(result_dict, file, indent=4, ensure_ascii=False)
+
+        # return result_dict
+    except Exception as err:
+        return err
+
 def main():
     # print(face_verify(img_1='faceBPItest/img_7.png', img_2='faceBPItest/img_6.png'))
-    print(face_recogn())
+    # print(face_recogn())
+    print(face_analyze())
 
 
 
