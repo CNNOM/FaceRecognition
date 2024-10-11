@@ -12,6 +12,7 @@ Contact Information:
 from deepface import DeepFace
 import json
 
+
 def face_recogn():
     try:
         img_path = "faceBPItest/img_3.png"
