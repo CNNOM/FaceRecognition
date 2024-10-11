@@ -15,19 +15,11 @@ def face_verify(img_1, img_2):
 
 def face_recogn():
     try:
-        # result = DeepFace.find(img_path='faceBPI/img.png', db_path='faceBPI')
-        # if result.empty:
-        #     return "No matches found"
-        # result = result.values.tolist()
-        img_path = "faceBPItest/img_3.png"
-
-        # Путь к базе данных изображений
+        img_path = "faceBPI/img.png"
         db_path = "faceBPItest"
 
-        DeepFace.detectFace(img_path)
+        DeepFace.build_model("Facenet")
 
-
-        # Выполнение поиска
         result = DeepFace.find(img_path=img_path, db_path=db_path)
         return result
     except Exception as err:

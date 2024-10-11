@@ -1,7 +1,28 @@
-import os
-import json
-from deepface import DeepFace
+"""
+face_recognizer  Copyright (C) 2023  Your Name
+This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
+This is free software, and you are welcome to redistribute it
+under certain conditions; type `show c' for details.
 
+Contact Information:
+- Email: your.email@example.com
+- Paper Mail: Your Address, City, Country
+"""
+
+from deepface import DeepFace
+import json
+
+def face_recogn():
+    try:
+        img_path = "faceBPItest/img_3.png"
+        db_path = "faceBPI"
+
+        DeepFace.build_model("Facenet")
+
+        result = DeepFace.find(img_path=img_path, db_path=db_path)
+        return result
+    except Exception as err:
+        return err
 
 def face_verify(img_1, img_2):
     try:
@@ -14,26 +35,8 @@ def face_verify(img_1, img_2):
     except Exception as _ex:
         return _ex
 
+def main():
+    print(face_recogn())
 
-def compare_with_folder(img_1, folder_path):
-    results = []
-    for filename in os.listdir(folder_path):
-        img_2 = os.path.join(folder_path, filename)
-        if os.path.isfile(img_2):  # Проверка, что это файл, а не подпапка
-            result = face_verify(img_1, img_2)
-            results.append({
-                'image': filename,
-                'result': result
-            })
-
-    return results
-
-
-# Пример использования
-img_1 = 'faceBPItest/img_3.png'
-folder_path = 'faceBPI'
-comparison_results = compare_with_folder(img_1, folder_path)
-
-# Вывод результатов
-for result in comparison_results:
-    print(f"Image: {result['image']}, Result: {result['result']}")
+if __name__ == "__main__":
+    main()
